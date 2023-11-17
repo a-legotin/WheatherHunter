@@ -51,4 +51,4 @@ deploy_production:
   only:
     - main
   script:
-    - kubectl cluster-inf
+    - kubectl cluster-info
