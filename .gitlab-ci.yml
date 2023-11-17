@@ -40,7 +40,7 @@ deploy_staging:
         name: staging
         url: https://whunter.box.ezlab.ru
   script:
-    - kubectl cluster-inf
+    - kubectl cluster-info
 
 deploy_production:
   stage: deploy-production
