@@ -4,3 +4,17 @@ services:
   wheatherhunter.crawler:
     environment:
       - DOTNET_ENVIRONMENT=Development
+
+  wheatherhunter.forecast:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+
+
+  wheatherhunter.request:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+

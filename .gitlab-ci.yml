@@ -20,6 +20,7 @@ build:
     - cd src
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker-compose build
+
 deploy_staging:
   stage: deploy
   tags:
@@ -30,6 +31,22 @@ deploy_staging:
   environment:
         name: staging
         url: https://whunter.box.ezlab.ru
+  script:
+    - kubectl config get-contexts
+    - kubectl config use-context ezlab/kubernetes-agent:leo
+
+deploy_production:
+  stage: deploy
+  tags:
+    - docker
+  image: 
+     name: bitnami/kubectl:latest
+     entrypoint: [""]
+  environment:
+        name: staging
+        url: https://whunter.box.ezlab.ru
+  rules:
+    - when: manual
   script:
     - kubectl config get-contexts
     - kubectl config use-context ezlab/kubernetes-agent:leo

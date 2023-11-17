@@ -2,7 +2,21 @@ version: '3.4'
 
 services:
   wheatherhunter.crawler:
-    image: wheatherhunter
+    image: wheatherhunter-crawler
     build:
       context: .
       dockerfile: WheatherHunter.Crawler/Dockerfile
+
+  wheatherhunter.forecast:
+    image: wheatherhunter-forecast
+    build:
+      context: .
+      dockerfile: WheatherHunter.Forecast/Dockerfile
+
+
+  wheatherhunter.request:
+    image: wheatherhunter-request
+    build:
+      context: .
+      dockerfile: WheatherHunter.Request/Dockerfile
+
