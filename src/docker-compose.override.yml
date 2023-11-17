@@ -1,0 +1,6 @@
+version: '3.4'
+
+services:
+  wheatherhunter.crawler:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
