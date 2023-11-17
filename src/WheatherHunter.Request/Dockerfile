@@ -4,7 +4,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["../WheatherHunter.Request/WheatherHunter.Request.csproj", "WheatherHunter.Request/"]
+COPY ["WheatherHunter.Request/WheatherHunter.Request.csproj", "WheatherHunter.Request/"]
 RUN dotnet restore "WheatherHunter.Request/WheatherHunter.Request.csproj"
 COPY . .
 WORKDIR "/src/WheatherHunter.Request"

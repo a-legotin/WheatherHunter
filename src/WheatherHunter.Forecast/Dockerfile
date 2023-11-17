@@ -4,7 +4,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["../WheatherHunter.Forecast/WheatherHunter.Forecast.csproj", "WheatherHunter.Forecast/"]
+COPY ["WheatherHunter.Forecast/WheatherHunter.Forecast.csproj", "WheatherHunter.Forecast/"]
 RUN dotnet restore "WheatherHunter.Forecast/WheatherHunter.Forecast.csproj"
 COPY . .
 WORKDIR "/src/WheatherHunter.Forecast"
