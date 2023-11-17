@@ -43,8 +43,8 @@ deploy_production:
      name: bitnami/kubectl:latest
      entrypoint: [""]
   environment:
-        name: staging
-        url: https://whunter.box.ezlab.ru
+        name: production
+        url: https://whunter.ezlab.ru
   rules:
     - when: manual
   script:
