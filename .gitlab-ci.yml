@@ -1,6 +1,7 @@
 stages:
   - build
-  - deploy
+  - deploy-staging
+  - deploy-production
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -8,6 +9,7 @@ variables:
 
 services:
     - docker:23.0.6-dind
+
 build:
   stage: build
   tags:
@@ -21,13 +23,16 @@ build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker-compose build
 
-deploy_staging:
-  stage: deploy
+.deploy:
   tags:
     - docker
   image: 
      name: bitnami/kubectl:latest
      entrypoint: [""]
+
+deploy_staging:
+  stage: deploy-staging
+  extends: .deploy
   environment:
         name: staging
         url: https://whunter.box.ezlab.ru
@@ -36,12 +41,8 @@ deploy_staging:
     - kubectl config use-context ezlab/kubernetes-agent:leo
 
 deploy_production:
-  stage: deploy
-  tags:
-    - docker
-  image: 
-     name: bitnami/kubectl:latest
-     entrypoint: [""]
+  stage: deploy-production
+  extends: .deploy
   environment:
         name: production
         url: https://whunter.ezlab.ru
