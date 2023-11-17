@@ -29,6 +29,9 @@ build:
   image: 
      name: bitnami/kubectl:latest
      entrypoint: [""]
+  before_script:
+    - kubectl config get-contexts
+    - kubectl config use-context ezlab/kubernetes-agent:leo
 
 deploy_staging:
   stage: deploy-staging
@@ -37,8 +40,7 @@ deploy_staging:
         name: staging
         url: https://whunter.box.ezlab.ru
   script:
-    - kubectl config get-contexts
-    - kubectl config use-context ezlab/kubernetes-agent:leo
+    - kubectl cluster-inf
 
 deploy_production:
   stage: deploy-production
@@ -46,8 +48,7 @@ deploy_production:
   environment:
         name: production
         url: https://whunter.ezlab.ru
-  rules:
-    - when: manual
+  only:
+    - main
   script:
-    - kubectl config get-contexts
-    - kubectl config use-context ezlab/kubernetes-agent:leo
+    - kubectl cluster-inf
